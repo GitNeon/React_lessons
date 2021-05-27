@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用类声明一个组件</title>
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script type="text/javascript" src="../../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <div id="test2"></div>
+    <script type="text/babel">
+        /**
+         * 1.使用类声明一个组件
+         */
+        class MyComponent extends React.Component {
+            render(){
+                return (
+                    <div>
+                        <h3>这是用类创建出来的组件</h3>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<MyComponent/>,document.getElementById('test'));
+
+        /**
+         * 2.使用类式组件接收值
+         */
+        class Person extends  React.Component {
+            constructor(props) {
+                super();
+            }
+            render(){
+                return (
+                    <div>
+                        <h3>我接收到的值是：{this.props.data}</h3>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Person data='aa' />,document.getElementById('test2'));
+    </script>
+</body>
+</html>

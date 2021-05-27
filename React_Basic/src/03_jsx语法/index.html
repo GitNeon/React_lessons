@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSX语法</title>
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script type="text/javascript" src="../../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+    <style>
+        .skyblue {
+            color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="test"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+    <div id="list"></div>
+    <script type="text/babel">
+        console.time("timer");
+        /**
+         * 1.创建标签简单写法
+         */
+        const VDOM = (
+            <div>
+                <h3>1.利用JSX创建的DOM</h3>
+            </div>
+        );
+        ReactDOM.render(VDOM,document.getElementById('test'));
+
+        /**
+         * 2.在JSX中计算表达式，直接使用一层{}花括号即可
+         */
+        const VDOM_2 = (
+            <div>
+                <h3>2.在JSX中计算表达式</h3>
+                <span>这是小写,apple,banana</span>
+                <span>这是大写,{'apple'.toUpperCase()},{'banana'.toUpperCase()}</span>
+            </div>
+        );
+        ReactDOM.render(VDOM_2,document.getElementById('test2'));
+
+        /**
+         * 3.在JSX中定义属性,直接声明字符串变量即可，或者通过计算表达式方式取值，注意的是，行内样式的定义必须用双花括号
+         */
+        const VDOM_3 = (
+            <div>
+                <h3>3.在JSX中定义属性</h3>
+                <span>直接声明字符串变量即可，或者通过计算表达式方式取值，注意的是，行内样式的定义必须用双花括号,
+                指定class样式时，其属性名必须为className</span>
+                <p id="content" className="skyblue">我是段落标签p,我的id是content,我的className是skyblue</p>
+                <p style={{ color: 'red', fontSize: '18px' }}>我是通过行内样式设置的段落标签</p>
+            </div>
+        );
+        ReactDOM.render(VDOM_3,document.getElementById('test3'));
+
+        /**
+         * 4.小练习，利用jsx遍历一个列表
+         */
+        const data= ['apple','orange','pear']
+        const VDOM_4 = (
+            <div>
+                <h3>4.小练习，利用jsx遍历一个列表</h3>
+                <p>常见的水果有：</p>
+                <ul>
+                    {
+                        data.map((item,index)=>{
+                            return <li key={index}>{item}</li>
+                        })
+                    }
+                </ul>
+            </div>
+        )
+        ReactDOM.render(VDOM_4,document.getElementById('list'));
+        console.timeEnd("timer");
+    </script>
+</body>
+</html>
