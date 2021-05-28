@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>props的使用</title>
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script type="text/javascript" src="../../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Person extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <h3>传递一个数组：</h3>
+                        <p>人员列表</p>
+                        <ul>
+                            {
+                                this.props.data.map((item,index)=>{
+                                    return <li key={index}>name:{item.name}---age:{item.age}---sex:{item.sex}</li>
+                                })
+                            }
+                        </ul>
+                    </div>
+                );
+            }
+        }
+        const data = [{
+            name: '小明',
+            age: 18,
+            sex: '男'
+        },{
+            name: '小红',
+            age: 22,
+            sex: '女'
+        }]
+        ReactDOM.render(<Person data={data}/>,document.getElementById('test'));
+    </script>
+</body>
+</html>

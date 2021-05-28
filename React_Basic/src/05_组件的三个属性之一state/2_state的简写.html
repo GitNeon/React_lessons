@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>state的简写</title>
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script type="text/javascript" src="../../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+      // 1.封装一个天气类组件
+      class Weather extends React.Component {
+
+          // 2.去掉构造器方法，声明一个成员变量
+          state = {
+              weatherInfo: {
+                  isHot: false,
+                  wind: '微风'
+              }
+          }
+
+          render() {
+              let { isHot,wind } = this.state.weatherInfo
+              return (
+                  <div>
+                      <h1 onClick={this.changeWeather}>今天天气很{ isHot ? '炎热' : '凉爽' }, {wind}</h1>
+                  </div>
+              );
+          }
+
+          /**
+           * 更改天气状态的方法,箭头函数this继承于它的上一级
+           */
+          changeWeather = () => {
+              let isHot = this.state.weatherInfo.isHot;
+              this.setState({
+                  weatherInfo: { isHot: !isHot,wind: '微风' }
+              })
+              console.log(isHot);
+          }
+      }
+      ReactDOM.render(<Weather/>,document.getElementById('test'));
+    </script>
+</body>
+</html>

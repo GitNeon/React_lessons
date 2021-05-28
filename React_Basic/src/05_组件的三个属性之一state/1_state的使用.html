@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>state的使用</title>
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script type="text/javascript" src="../../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+      // 1.封装一个天气类组件
+      class Weather extends React.Component {
+          // 2.在构造器中定义state属性
+          constructor() {
+              super();
+              // 给当前组件创建的实例对象添加一个state属性
+              this.state = {
+                  weatherInfo: {
+                      isHot: false,
+                      wind: '微风'
+                  }
+              }
+              console.log(this);
+              // 绑定一个this
+              this.changeWeather = this.changeWeather.bind(this)
+          }
+
+          render() {
+              let { isHot,wind } = this.state.weatherInfo
+              return (
+                  <div>
+                      <h1 onClick={this.changeWeather}>今天天气很{ isHot ? '炎热' : '凉爽' }, {wind}</h1>
+                  </div>
+              );
+          }
+
+          /**
+           * 注意：在类组件中自己定义的方法是没有this指向的，所以不能获取state的值
+           */
+          changeWeather(){
+              console.log('this:',this);
+              let { isHot } = this.state.weatherInfo
+              console.log('change...',isHot);
+              // 改变state状态时必须通过React提供的setState方法
+              this.setState(
+                  {
+                      weatherInfo: { isHot: !isHot,wind: '微风' }
+                  },function () {
+                      console.log('更改状态完毕')
+                  })
+          }
+      }
+      ReactDOM.render(<Weather/>,document.getElementById('test'));
+    </script>
+</body>
+</html>

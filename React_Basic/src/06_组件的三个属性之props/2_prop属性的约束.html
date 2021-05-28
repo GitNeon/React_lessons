@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prop属性的约束</title>
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script type="text/javascript" src="../../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+    <script type="text/javascript" src="../../js/prop-types.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Person extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <h3>传递一个数组：</h3>
+                        <p>人员列表</p>
+                        <ul>
+                            <li>Name：{this.props.name}</li>
+                            <li>age：{this.props.age}</li>
+                            <li>sex：{this.props.sex}</li>
+                        </ul>
+                    </div>
+                );
+            }
+        }
+        const data = {
+            name: '小明',
+            age: "18",
+            sex: '男'
+        }
+
+        /**
+         * 对属性的约束
+         */
+        Person.propTypes = {
+            name:PropTypes.string.isRequired,
+            age: PropTypes.number,
+            sex: PropTypes.string
+        }
+
+        // ReactDOM.render(<Person name="小明" age={19} sex={'男'} />,document.getElementById('test'));
+        // React传递对象的写法，会将当前对象属性值拷贝到props中去
+        ReactDOM.render(<Person {...data} />,document.getElementById('test'));
+    </script>
+</body>
+</html>
