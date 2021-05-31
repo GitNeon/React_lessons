@@ -9,7 +9,9 @@
 </head>
 <body>
     <div id="test"></div>
+    <div id="test2"></div>
     <script type="text/babel">
+        // 传递一个数组
         class Person extends React.Component {
             render() {
                 return (
@@ -37,6 +39,31 @@
             sex: '女'
         }]
         ReactDOM.render(<Person data={data}/>,document.getElementById('test'));
+
+        // 传递对象
+        class Student extends React.Component {
+
+            render() {
+                const { name,age,sex,course } = this.props;
+                return (
+                    <div>
+                        <h3>传递一个对象</h3>
+                        <p>姓名：{ name }</p>
+                        <p>年龄：{ age }</p>
+                        <p>性别：{ sex }</p>
+                        <p>课程：{ course }</p>
+                    </div>
+                );
+            }
+
+        }
+        const student_data = {
+            name: '小李',
+            age: 20,
+            sex: '男',
+            course: '计算机基础，C语言'
+        }
+        ReactDOM.render(<Student {...student_data} />,document.getElementById('test2'));
     </script>
 </body>
 </html>

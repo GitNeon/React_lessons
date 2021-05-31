@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prop属性的约束</title>
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script type="text/javascript" src="../../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+    <script type="text/javascript" src="../../js/prop-types.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        /**
+         * 对属性约束的简写方式
+         */
+        class Person extends React.Component {
+
+            constructor(props) {
+                // 不加super必报错，报错原因是因为子类没有自己的 this 对象，而是继承父类的 this 对象，
+                // 然后对其进行加工,而 super 就代表了父类的构造函数。super 虽然代表了父类 React.Component的构造函数，
+                // 但是返回的是子类 Person 的实例，即 super 内部的 this 指的是 Person。因此，想要接收到props参数
+                // 此处的super(name,age)===super.call(this,name,age); 所以此时调用的父类的构造函数内的this指向的是Person实例
+                super(props);
+                // 如果想要在构造器中调用this.props,必须在super中传递props参数
+                console.log('props:',this.props);
+            }
+
+            // 将对象的属性约束声明成静态成员
+            static propTypes = {
+                name: PropTypes.string.isRequired,
+                age: PropTypes.number,
+                sex: PropTypes.string
+            }
+
+            static defaultProps = {
+                sex: '未知',
+                age: 18
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h3>传递一个对象：</h3>
+                        <ul>
+                            <li>Name：{this.props.name}</li>
+                            <li>age：{this.props.age}</li>
+                            <li>sex：{this.props.sex}</li>
+                        </ul>
+                    </div>
+                );
+            }
+        }
+
+        const data = {
+            name: '小明',
+            age: 18,
+            // sex: '男'
+        }
+
+        ReactDOM.render(<Person {...data} />,document.getElementById('test'));
+    </script>
+</body>
+</html>

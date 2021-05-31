@@ -15,7 +15,7 @@
             render() {
                 return (
                     <div>
-                        <h3>传递一个数组：</h3>
+                        <h3>传递一个对象：</h3>
                         <p>人员列表</p>
                         <ul>
                             <li>Name：{this.props.name}</li>
@@ -41,6 +41,13 @@
             sex: PropTypes.string
         }
 
+        /**
+         * 默认值约束
+         */
+        Person.defaultProps = {
+            sex: '未知',
+            age: 18
+        }
         // ReactDOM.render(<Person name="小明" age={19} sex={'男'} />,document.getElementById('test'));
         // React传递对象的写法，会将当前对象属性值拷贝到props中去
         ReactDOM.render(<Person {...data} />,document.getElementById('test'));
