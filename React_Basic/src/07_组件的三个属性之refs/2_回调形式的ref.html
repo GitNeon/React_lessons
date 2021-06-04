@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>回调形式的ref</title>
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script type="text/javascript" src="../../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Demo extends React.Component {
+
+            getValue = ()=>{
+                const { inputA } = this;
+                alert(inputA.value);
+            }
+
+            saveInputB = (el)=>{
+                this.inputB = el;
+            }
+
+            getValue2 = ()=>{
+                const { inputB } = this;
+                alert(inputB.value);
+            }
+
+            render() {
+                return (
+                    <div>
+                        <input ref={ el => this.inputA = el } type="text" placeholder="请输入任意字符"/>
+                        <button onClick={this.getValue}>点击获取第一个Input框数据</button>
+                        <br/>
+                        <input ref={this.saveInputB } type="text" placeholder="请输入任意字符"/>
+                        <button onClick={this.getValue2}>点击获取第二个Input框数据</button>
+                    </div>
+                );
+            }
+
+        }
+
+        ReactDOM.render(<Demo/>,document.getElementById('test'));
+    </script>
+</body>
+</html>
