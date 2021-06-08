@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生命周期</title>
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script type="text/javascript" src="../../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class Life extends React.Component {
+
+            constructor(props) {
+                super(props);
+                this.state = {
+                    count: 0
+                }
+                console.log('生命周期阶段：constructor')
+            }
+
+            componentWillMount(){
+                console.log('生命周期阶段：componentWillMount,组件将要被挂载')
+            }
+
+            render() {
+                console.log('生命周期阶段：render,组件被渲染');
+                return (
+                    <div>
+                        <div style={{float:'left'}}>
+                            <img src="../../img/2_react生命周期(旧).png" alt=""/>
+                        </div>
+                        <div style={{float:'left'}}>
+                            <h3>当前数字：{this.state.count}</h3>
+                            <button onClick={this.addNum}>点我+1</button>
+                            <button onClick={this.death}>卸载组件</button>
+                        </div>
+
+                    </div>
+                );
+            }
+
+            shouldComponentUpdate(){
+                console.log('控制组件是否能更新:shouldComponentUpdate');
+                return true
+            }
+
+            componentDidMount(){
+                console.log('生命周期阶段：componentDidMount,组件被挂载了')
+            }
+
+
+            componentWillUpdate(){
+                console.log('生命周期阶段：componentWillUpdate,组件将要被更新')
+            }
+
+            componentDidUpdate(){
+                console.log('生命周期阶段：componentDidUpdate,组件已经被更新了')
+            }
+
+            componentWillUnmount(){
+                console.log('生命周期阶段：componentWillUnmount,组件将要被卸载')
+            }
+
+            /* 自定义方法 */
+            addNum = ()=>{
+                let count = this.state.count;
+                count += 1;
+                this.setState({ count })
+            }
+
+            death = ()=>{
+                ReactDOM.unmountComponentAtNode(document.getElementById('test'));
+                console.log('已经调用方法销毁了组件： ReactDOM.unmountComponentAtNode()')
+            }
+        }
+
+        ReactDOM.render(<Life/>,document.getElementById('test'))
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>受控组件</title>
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script type="text/javascript" src="../../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/babel">
+        class FormComponent extends React.Component {
+
+            state = {};
+
+            usernameRef = React.createRef();
+            passwordRef = React.createRef();
+
+            handleSubmit = (event)=>{
+                event.preventDefault();
+                console.log(event);
+                this.state.username = this.usernameRef.current.value;
+                this.state.password = this.passwordRef.current.value;
+                alert(`从state中获取的的用户名是：${this.state.username};密码是：${this.state.password}`)
+            }
+
+            render() {
+                return (
+                    <div>
+                        <form onSubmit={this.handleSubmit}>
+                            <p>受控组件：提交和获取数据时，通过react中的state状态进行数据管理，这就是受控组件</p>
+                            <input ref={this.usernameRef} type="text" name="username"/>用户名<br/>
+                            <input ref={this.passwordRef} type="password" name="password"/>密码<br/>
+                            <button>提交表单</button>
+                        </form>
+                    </div>
+                );
+            }
+
+        }
+
+        ReactDOM.render(<FormComponent/>,document.getElementById('test'));
+    </script>
+</body>
+</html>
