@@ -1,97 +1,37 @@
-import React, {Component} from 'react';
-import './App.css';
-import Header from "./components/Header";
-import List from "./components/List";
-import Footer from "./components/Footer";
+import * as React from 'react';
+import { Link,Route } from 'react-router-dom'
+import About from "./component/About";
+import Home from "./component/Home";
 
-class App extends Component {
-
-    state = {
-        taskList:[
-            {
-                id:1,
-                name:'吃饭',
-                done:true
-            },
-            {
-                id:2,
-                name:'睡觉',
-                done:false
-            },
-            {
-                id:3,
-                name:'打豆豆',
-                done:false
-            }
-        ]
-    }
-
-    getListComponentData(thisType,data){
-        console.log('thisType: ',thisType);
-        console.log('data: ',data);
-        this.setState({
-            taskList: data
-        });
-    }
-
-    deleteTask(thisType,id){
-        let tempArray = this.state.taskList.filter(item => {
-            return item.id !== id;
-        })
-        console.log('tempArray: ',tempArray);
-        this.setState({
-            taskList: tempArray
-        })
-    }
-
-    addTask(thisType,value){
-        let tempArray = this.state.taskList;
-        let obj = {
-            id: tempArray[tempArray.length - 1].id + 1,
-            name: value,
-            done: false
-        }
-        tempArray.push(obj);
-        this.setState({
-            taskList: tempArray
-        })
-    }
-
-    allDone(thisType,checked){
-        let tempArray = this.state.taskList;
-        let list = tempArray.map(item => {
-            return {...item,done: checked};
-        });
-        this.setState({
-            taskList: list
-        })
-    }
-
-    clearAllTask(){
-        let tempArray = this.state.taskList;
-        let list = tempArray.map(item => {
-            if(item.done === true){
-                return {...item,done: false};
-            }else {
-                return item;
-            }
-        });
-        this.setState({
-            taskList: list
-        })
-    }
-
-    render() {
-        return (
-            <div className="todo-container">
-                <div className="todo-wrap">
-                    <Header taskList={this.state.taskList} parent={this}/>
-                    <List taskList={this.state.taskList} parent={this}/>
-                    <Footer taskList={this.state.taskList} parent={this}/>
-                </div>
+export default class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <div className="row">
+          <div className="col-xs-offset-2 col-xs-8">
+            <div className="page-header"><h2>React Router Demo</h2></div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-xs-2 col-xs-offset-2">
+            {/*    <div className="list-group">
+                  <a className="list-group-item" href="./about.html">About</a>
+                  <a className="list-group-item active" href="./home.html">Home</a>
+                </div>*/}
+                <Link className="list-group-item" to="/about">About</Link>
+                <Link className="list-group-item" to="/home">Home</Link>
+          </div>
+          <div className="col-xs-6">
+            <div className="panel">
+              <div className="panel-body">
+                {/*<h3>我是Home的内容</h3>*/}
+                <Route path="/about" component={About} exact/>
+                <Route path="/home" component={Home}/>
+              </div>
             </div>
-        );
-    }
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
-
-export default App;

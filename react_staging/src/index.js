@@ -1,15 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-
-class Index extends Component {
-    render() {
-        return (
-            <div>
-                <App/>
-            </div>
-        );
-    }
-}
-
-ReactDOM.render(<Index/>,document.getElementById('root'));
+//引入App组件
+import App from "./App";
+import {BrowserRouter} from "react-router-dom";
+//渲染App到页面
+ReactDOM.render(
+  <BrowserRouter>
+    <App/>
+  </BrowserRouter>,
+  document.getElementById('root'));
