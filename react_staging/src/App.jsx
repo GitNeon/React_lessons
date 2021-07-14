@@ -1,8 +1,7 @@
 import * as React from 'react';
-import {Route} from 'react-router-dom'
-import MyNavLink from "./component/MyNavLink";
-import About from "./pages/About";
-import Home from "./pages/Home";
+import {NavLink, Route,Redirect} from 'react-router-dom'
+import About from "./pages/About/index";
+import Home from "./pages/Home/index";
 
 export default class App extends React.Component {
   render() {
@@ -15,9 +14,10 @@ export default class App extends React.Component {
         </div>
         <div className="row">
           <div className="col-xs-2 col-xs-offset-2">
-            {/* 当导航列表项有很多时，可以对NavLink进行封装，减少冗余代码 */}
-            <MyNavLink a={1} b={2} title="About" to="/about" children={About}>About</MyNavLink>
-            <MyNavLink title="Home" to="/home" children={Home}>Home</MyNavLink>
+            <div className="list-group">
+              <NavLink className="list-group-item" to="/home">Home</NavLink>
+              <NavLink className="list-group-item" to="/about">About</NavLink>
+            </div>
           </div>
           <div className="col-xs-6">
             <div className="panel">
@@ -25,6 +25,7 @@ export default class App extends React.Component {
                 {/*<h3>我是Home的内容</h3>*/}
                 <Route path="/about" component={About} exact/>
                 <Route path="/home" component={Home}/>
+                <Redirect to="/home/news" />
               </div>
             </div>
           </div>
