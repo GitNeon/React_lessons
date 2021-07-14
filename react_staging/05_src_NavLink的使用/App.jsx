@@ -1,8 +1,7 @@
 import * as React from 'react';
-import {Route} from 'react-router-dom'
-import MyNavLink from "./component/MyNavLink";
-import About from "./pages/About";
-import Home from "./pages/Home";
+import {Link, NavLink, Route} from 'react-router-dom'
+import About from "./component/About";
+import Home from "./component/Home";
 
 export default class App extends React.Component {
   render() {
@@ -15,9 +14,11 @@ export default class App extends React.Component {
         </div>
         <div className="row">
           <div className="col-xs-2 col-xs-offset-2">
-            {/* 当导航列表项有很多时，可以对NavLink进行封装，减少冗余代码 */}
-            <MyNavLink a={1} b={2} title="About" to="/about" children={About}>About</MyNavLink>
-            <MyNavLink title="Home" to="/home" children={Home}>Home</MyNavLink>
+         {/*   <Link className="list-group-item" to="/about">About</Link>
+            <Link className="list-group-item" to="/home">Home</Link>*/}
+            {/*使用NavLink可以触发当前选中的css样式，其原理就是自动会在className上添加active类*/}
+            <NavLink className="list-group-item" to="/about">About</NavLink>
+            <NavLink className="list-group-item" to="/home">Home</NavLink>
           </div>
           <div className="col-xs-6">
             <div className="panel">
