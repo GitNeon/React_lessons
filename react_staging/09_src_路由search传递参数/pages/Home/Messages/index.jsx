@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link,Route} from "react-router-dom";
 import Detail from "./Detail";
+import qs from "querystring";
 
 class Messages extends Component {
 
@@ -28,13 +29,15 @@ class Messages extends Component {
             this.state.msgList.map(item => {
               return (
                 <li key={item.id}>
-                  <Link to={{pathname: "/home/messages/detail", state: item}}>{item.title}</Link>
+                  {/*<Link to={`/home/messages/detail/${item.id}/${item.title}`}>{item.title}</Link>*/}
+                  <Link to={`/home/messages/detail/?${qs.stringify(item)}`}>{item.title}</Link>
                 </li>
               )
             })
           }
         </ul>
         <hr/>
+        {/*<Route path="/home/messages/detail/:id/:title" component={Detail}/>*/}
         <Route path="/home/messages/detail" component={Detail}/>
       </div>
     )

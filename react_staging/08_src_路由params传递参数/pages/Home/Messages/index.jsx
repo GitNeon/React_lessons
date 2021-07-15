@@ -14,7 +14,7 @@ class Messages extends Component {
     },{
       id:3,
       title: '消息列表3'
-    },{
+    },,{
       id:4,
       title: '消息列表4'
     }]
@@ -28,14 +28,14 @@ class Messages extends Component {
             this.state.msgList.map(item => {
               return (
                 <li key={item.id}>
-                  <Link to={{pathname: "/home/messages/detail", state: item}}>{item.title}</Link>
+                  <Link to={`/home/messages/detail/${item.id}/${item.title}`}>{item.title}</Link>
                 </li>
               )
             })
           }
         </ul>
         <hr/>
-        <Route path="/home/messages/detail" component={Detail}/>
+        <Route path="/home/messages/detail/:id/:title" component={Detail}/>
       </div>
     )
   }
