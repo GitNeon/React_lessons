@@ -10,7 +10,6 @@ export default function countReducer(preState = 0, action){
   const { type, data } = action;
   switch (type) {
     case '+':
-      console.log('+',preState + data);
       return preState + data*1
     case '-':
       return preState - data*1
