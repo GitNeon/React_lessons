@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-// 引入store，用于获取redux中保存状态
-import store from '../../redux/store';
-// 引入动作对象
-import {createIncrementAction,createDecrementAction} from "../../redux/count_action";
+//引入store，用于获取redux中保存状态
+import store from '../../redux/store'
 
 class Count extends Component {
 
@@ -14,24 +12,20 @@ class Count extends Component {
 
   calcNumber = (char)=>{
     const { value } = this.selectNumber;
-    if(char === '+'){
-      store.dispatch(createIncrementAction(value));
-    }else {
-      store.dispatch(createDecrementAction(value));
-    }
+    store.dispatch({ type: char, data: value });
   }
 
   evenAdd = ()=>{
     const { value } = this.selectNumber;
     if(value % 2 !== 0){
-      store.dispatch(createIncrementAction(value));
+      store.dispatch({ type: '+', data: value });
     }
   }
 
   asyncAdd = ()=>{
     const { value } = this.selectNumber;
     setTimeout(function () {
-      store.dispatch(createIncrementAction(value));
+      store.dispatch({ type: '+', data: value });
     },600)
   }
 
