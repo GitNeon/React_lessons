@@ -1,49 +1,38 @@
 import React, {Component} from 'react';
+//引入store，用于获取redux中保存状态
+import store from '../../redux/store'
 
 class Count extends Component {
 
-  state = {
-    count: 0
+  componentDidMount() {
+    store.subscribe(() => {
+      this.forceUpdate();
+    })
   }
 
   calcNumber = (char)=>{
-    let { value } = this.selectNumber;
-    let { count } = this.state;
-    switch (char) {
-      case '+':
-        this.setState({ count: count + value*1 });
-        break
-      case '-':
-        this.setState({ count: count - value*1 });
-        break
-      default:
-        return false
-    }
-
+    const { value } = this.selectNumber;
+    store.dispatch({ type: char, data: value });
   }
 
   evenAdd = ()=>{
-    let { value } = this.selectNumber;
-    let { count } = this.state;
+    const { value } = this.selectNumber;
     if(value % 2 !== 0){
-      this.setState({ count: count + value*1 });
+      store.dispatch({ type: '+', data: value });
     }
   }
 
   asyncAdd = ()=>{
-    let { value } = this.selectNumber;
-    let { count } = this.state;
-    let this_ = this;
+    const { value } = this.selectNumber;
     setTimeout(function () {
-      this_.setState({ count: count + value*1 });
-    },500)
+      store.dispatch({ type: '+', data: value });
+    },600)
   }
 
   render() {
-    let { count } = this.state;
     return (
       <div>
-        <h2>当前计算结果为：{count}</h2>
+        <h2>当前计算结果为：{store.getState()}</h2>
         <span>选择计算数</span>
         <select name="numbers" id="number-select" ref={r => this.selectNumber = r }>
           <option value="1">1</option>
