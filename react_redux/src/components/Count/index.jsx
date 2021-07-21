@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 // 引入store，用于获取redux中保存状态
 import store from '../../redux/store';
 // 引入动作对象
-import {createIncrementAction,createDecrementAction} from "../../redux/count_action";
+import {createIncrementAction,createDecrementAction,createIncrementAsyncAction} from "../../redux/count_action";
 
 class Count extends Component {
 
@@ -30,9 +30,11 @@ class Count extends Component {
 
   asyncAdd = ()=>{
     const { value } = this.selectNumber;
-    setTimeout(function () {
-      store.dispatch(createIncrementAction(value));
-    },600)
+    // 异步action,除了在自己组件中定义异步方法外，还可以通过store来定义异步方法
+    // setTimeout(function () {
+    //   store.dispatch(createIncrementAction(value));
+    // },600)
+    store.dispatch(createIncrementAsyncAction(value,500));
   }
 
   render() {
