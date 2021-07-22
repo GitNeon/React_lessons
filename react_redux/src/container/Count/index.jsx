@@ -1,29 +1,62 @@
-import CountUI from "../../components/Count";
+import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {createIncrementAction,createDecrementAction,createIncrementAsyncAction} from "../../redux/count_action";
+import {
+  createDecrementAction,
+  createIncrementAction,
+  createIncrementAsyncAction
+} from "../../redux/count_action";
 
-/**
- * 返回对象作为UI组件的props属性值,该方法通常用于单纯的传递Object数据
- * @param state 来自于store中的值
- * @return {{count: number}}
- */
-function mapStateToProps(state){
+class Count extends Component {
+
+  calcNumber = (char)=>{
+    const { value } = this.selectNumber;
+    console.log(this.props);
+    if(char === '+'){
+      this.props.increment(value);
+    }else if(char === '-'){
+      this.props.decrement(value);
+    }
+  }
+
+  evenAdd = ()=>{
+    const { value } = this.selectNumber;
+    if(value % 2 !== 0){
+      this.props.increment(value);
+    }
+  }
+
+  asyncAdd = ()=>{
+    const { value } = this.selectNumber;
+    this.props.asyncIncrement(value,500);
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>当前计算结果为：{this.props.count}</h2>
+        <span>选择计算数</span>
+        <select name="numbers" id="number-select" ref={r => this.selectNumber = r }>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <button onClick={() => {this.calcNumber('+')}}>+</button>
+        <button onClick={() => {this.calcNumber('-')}}>-</button>
+        <button onClick={this.evenAdd}>选择数为奇数加</button>
+        <button onClick={this.asyncAdd}>异步加</button>
+      </div>
+    );
+  }
+}
+
+export default connect( (state) => {
   return {
     count: state
   }
-}
-
-/**
- * 返回对象作为UI组件的props属性值,该方法通常用于传递具体执行动作的Action对象
- * @param dispatch
- */
-function mapDispatchToProps(dispatch){
-  return {
-    increment: number => dispatch(createIncrementAction(number)),
-    decrement: number => dispatch(createDecrementAction(number)),
-    asyncIncrement: (number,time) => dispatch(createIncrementAsyncAction(number,time))
-  }
-}
-
-// 使用connect()()创建并暴露一个Count的容器组件
-export default connect(mapStateToProps,mapDispatchToProps)(CountUI);
+},{
+  increment: createIncrementAction,
+  decrement: createDecrementAction,
+  asyncIncrement: createIncrementAsyncAction
+})(Count)
