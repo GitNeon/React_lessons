@@ -19,7 +19,7 @@ class Person extends Component {
     console.log('this.props:',this.props);
     return (
       <div>
-        <h3>Person组件,共享Count组件的值为：</h3>
+        <h3>Person组件,共享Count组件的值为：{this.props.countNumber}</h3>
         <span>姓名：</span><input type="text" placeholder="请输入姓名" ref={c => this.nameNode = c}/>
         <span>年龄：</span><input type="text" placeholder="请输入年龄" ref={c => this.ageNode = c}/>
         <button onClick={this.addPerson}>添加人员</button>
