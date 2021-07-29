@@ -55,7 +55,7 @@ function CountF(){
       console.log('清理定时器方法');
       clearInterval(timer)
     }
-    // 第二个参数传递空数组，表示不监测任何变量，使得return的函数只会在umout时执行一次
+    // 第二个参数传递空数组，表示不监测任何变量，使得return的函数只会在umount时执行一次
   },[]);
 
   const show = ()=>{

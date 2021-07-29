@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Index from "./components/03_React中的Hooks";
+import Index from "./components/06_PureComponent";
 
 class App extends Component {
   render() {
