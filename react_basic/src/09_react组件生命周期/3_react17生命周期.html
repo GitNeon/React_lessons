@@ -63,14 +63,14 @@
 
     //若state的值在任何时候都取决于props，那么可以使用getDerivedStateFromProps
     static getDerivedStateFromProps(props,state){
-      console.log('生命周期阶段：getDerivedStateFromProps',props,state);
+      console.log('生命周期阶段：getDerivedStateFromProps','props:',props,'state:',state);
       return null
     }
 
-    //在更新之前获取快照
-    getSnapshotBeforeUpdate(){
-      console.log('生命周期阶段：getSnapshotBeforeUpdate');
-      return 'atguigu'
+    // 获取数据更新前的快照
+    getSnapshotBeforeUpdate(prevProps, prevState){
+      console.log('生命周期阶段：getSnapshotBeforeUpdate','prevProps:',prevProps,'prevState:',prevState);
+      return 'This is Snapshot data'
     }
 
     //组件挂载完毕的钩子
@@ -84,19 +84,19 @@
     }
 
     //控制组件更新的“阀门”
-    shouldComponentUpdate(){
-      console.log('生命周期阶段：shouldComponentUpdate');
+    shouldComponentUpdate(nextProps, nextState){
+      console.log('生命周期阶段：shouldComponentUpdate','nextProps:',nextProps, 'nextState:',nextState);
       return true
     }
 
     //组件更新完毕的钩子
     componentDidUpdate(preProps,preState,snapshotValue){
-      console.log('生命周期阶段：componentDidUpdate',preProps,preState,snapshotValue);
+      console.log('生命周期阶段：componentDidUpdate','prevProps:',preProps,'prevState:',preState,snapshotValue);
     }
 
     render(){
-      console.log('生命周期阶段：render');
-      const {count} = this.state
+      const {count} = this.state;
+      console.log('生命周期阶段：render','state-count:',count);
       return(
         <div>
           <div style={{float:'left'}}>
