@@ -13,8 +13,8 @@
       // 1.封装一个天气类组件
       class Weather extends React.Component {
           // 2.在构造器中定义state属性
-          constructor() {
-              super();
+          constructor(props) {
+              super(props);
               // 给当前组件创建的实例对象添加一个state属性
               this.state = {
                   weatherInfo: {
