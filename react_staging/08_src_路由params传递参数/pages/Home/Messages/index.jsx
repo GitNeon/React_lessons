@@ -14,7 +14,7 @@ class Messages extends Component {
     },{
       id:3,
       title: '消息列表3'
-    },,{
+    },{
       id:4,
       title: '消息列表4'
     }]
