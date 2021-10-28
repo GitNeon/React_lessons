@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import personReducer from "../../redux/reducers/person_reducer";
 import {createAddPersonAction} from "../../redux/action/person_action";
 
 class Person extends Component {
