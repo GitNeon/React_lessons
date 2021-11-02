@@ -137,22 +137,10 @@ V
 &react_staging/public/css/bootstrap.css,4\c\4c6b0757216e534c1ee7cf9bc0fce2c4a80c505e
 G
 react_staging/yarn.lock,2\3\23307032fa52dd1a72bb4820994068e7d04d05a9
-n
->react_staging/04_src_ 路由的基本使用/component/Home.jsx,3\c\3c6b058027d41cfede2a7d0b19160e4370e9b725
 h
 8react_staging/05_src_NavLink的使用/component/Home.jsx,8\e\8edd9473c272230a3cd6e88614760889674d3d8a
-[
-+react_staging/src/pages/Home/News/index.jsx,7\e\7efea54f4545d531deb19ec02e5466fcf5240078
-W
-'react_staging/src/pages/About/index.jsx,2\1\21fb10057c9f1a7e378a831b583026ff1d722810
-_
-/react_staging/src/pages/Home/Messages/index.jsx,4\0\40366aa8d1de0da48f946d21a93c9109f06df9ce
-V
-&react_staging/src/pages/Home/index.jsx,c\7\c7eb8a59f0ab9f1bc66f6bc4c89d2ea57a05118b
 s
 Creact_staging/06_src_NavLink的封装/component/MyNavLink/index.jsx,9\1\918b465808f6c762700aee26cdf23a7684b6a751
-e
-5react_staging/src/pages/Home/Messages/Detail/index.js,b\f\bfd0186c2b317ff6f7b6d945a3cf4b40a3ca4992
 `
 0react_staging/12_src_withRouter的使用/App.jsx,e\a\eaf9f520cd119d253c91a5b6eb4f32d0646b342d
 t
@@ -281,12 +269,6 @@ x
 Hreact_redux/05_src_react-redux的基本使用/components/Count/index.jsx,9\a\9a387160a56ffb22e43d2189b1c0736b766fafc9
 w
 Greact_redux/06_src_react-redux数据共享/redux/action/count_action.js,d\5\d56abf0325d1474216b854bec94dab8ae3a5b262
-d
-4react_staging/04_src_ 路由的基本使用/index.js,b\a\ba8bbedc75c159b531b951de81dd502dd873a722
-c
-3react_staging/04_src_ 路由的基本使用/App.jsx,5\b\5b1cde35d67e2dd137cee2df1d4c8844c7631a49
-o
-?react_staging/04_src_ 路由的基本使用/component/About.jsx,e\5\e589eedb91e9c3fe2e5e69bd01f8e5cef3c63dd8
 ]
 -react_staging/06_src_NavLink的封装/App.jsx,f\5\f5af094b0e6e190d7004f1a02e0839558481c823
 ]
@@ -313,3 +295,7 @@ u
 Ereact_basic/src/09_react组件生命周期/3_react17生命周期.html,6\f\6fb298198baf4b6f747fc0b6b4d13483b8e2f0b2
 i
 9react_redux/06_src_react-redux数据共享/redux/store.js,7\c\7ca7e1d3d3985a39cb8ddd384ed9ac6b4e34578b
+R
+"react_staging/src/router/router.js,c\0\c076ea05a998d7c89dc19e48bdf0b07e150678e9
+U
+%react_staging/src/components/Page2.js,c\b\cbb5dd225137ca957151a345ff059958ace187b3
