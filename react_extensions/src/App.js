@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
-import ErrorBoundary from './components/07_错误边界/ErrorBoundary';
-import Count from './components/07_错误边界/Count';
+import UsualHoc from './components/08_高阶组件/simple/Usual';
 
 class App extends Component {
     render() {
         return (
             <div>
-                <ErrorBoundary>
-                    <Count/>
-                </ErrorBoundary>
+                <UsualHoc/>
             </div>
         );
     }
