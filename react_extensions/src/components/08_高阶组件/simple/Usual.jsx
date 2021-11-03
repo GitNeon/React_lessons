@@ -3,7 +3,7 @@ import SimpleHoc from './SimpleHoc';
 
 class Usual extends Component {
     render() {
-        console.log('pros:',this.props);
+        console.log('props:',this.props);
         return (
             <div>
                 <h3>This is Usual Component...</h3>
