@@ -1,23 +1,13 @@
 import React,{ Component } from 'react';
-// import UsualHoc from "./components/08_高阶组件/propsProxy/Usual";
-// 高阶组件基本使用
-// class App extends Component {
-//     render() {
-//         return (
-//             <div>
-//                 <UsualHoc data={{name: 'component' }}/>
-//             </div>
-//         );
-//     }
-// }
+import Mouse from "./components/09_renderProps/Mouse";
 
-// 属性代理
-import FormLogin from "./components/08_高阶组件/example/Form";
 class App extends Component {
     render() {
         return (
-            <div>
-                <FormLogin/>
+            <div style={{ height: '100%' }}>
+                <Mouse render={({ x, y }) => (
+                    <h1>The mouse position is ({x}, {y})</h1>
+                )}/>
             </div>
         );
     }
