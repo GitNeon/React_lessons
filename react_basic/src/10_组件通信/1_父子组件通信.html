@@ -29,7 +29,7 @@
                   <div className="App">
                       <p>我是父组件:{this.state.msg}</p>
                       <hr/>
-                      <Child callback={this.callback} msg={this.state.msg}/>
+                      <Child parent={this} callback={this.callback} msg={this.state.msg}/>
                   </div>
                 );
             }
@@ -49,7 +49,7 @@
             render(){
                 return(
                   <div>
-                      <p>我是子组件，我接收到父组件传的值是：{this.props.msg}</p>
+                      <p>我是子组件，我接收到父组件传的值是：{this.props.msg},{console.log(this.props.parent)}</p>
                       <button onClick={this.trans}>点我传值给父组件</button>
                   </div>
                 )

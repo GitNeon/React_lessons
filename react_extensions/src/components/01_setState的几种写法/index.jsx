@@ -8,11 +8,11 @@ class Index extends Component {
 
   add = () => {
     // 方法一：直接通过对象形式更新值
-    // this.setState({count: this.state.count + 1});
+    // this.setState({count: state.count + this.props.increment });
 
     // 方法二：通过函数
-    this.setState( state => {
-      return { count: state.count + 1 };
+    this.setState( (state,props) => {
+      return { count: state.count + this.props.increment };
     },() => {
       console.log(this.state.count)
     })

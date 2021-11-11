@@ -29,6 +29,8 @@ class Custom2 extends React.Component {
     //订阅者2消息显示
     render () {
         return(<p style={{color:'blue'}}>{this.state.msg}</p>)
+
     }
+
 }
 export default Custom2;
