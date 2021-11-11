@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件通信</title>
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script type="text/javascript" src="../../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class App extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {
+                    msg: '这是父组件消息'
+                }
+            }
+
+            //父组件回调函数，更新state，进而更新父组件。
+            callback=(msg)=>{
+                // setState方法,修改msg参数,值是由子组件传过来。
+                this.setState({msg});
+            }
+
+            render() {
+                return (
+                  <div className="App">
+                      <p>我是父组件:{this.state.msg}</p>
+                      <hr/>
+                      <Child callback={this.callback} msg={this.state.msg}/>
+                  </div>
+                );
+            }
+        }
+
+        class Child extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={
+                    msg: '子组件msg传值'
+                }
+            }
+            //通过props调用回调函数传值
+            trans=()=>{
+                this.props.callback(this.state.msg);
+            }
+            render(){
+                return(
+                  <div>
+                      <p>我是子组件，我接收到父组件传的值是：{this.props.msg}</p>
+                      <button onClick={this.trans}>点我传值给父组件</button>
+                  </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<App/>,document.getElementById('root'));
+    </script>
+</body>
+</html>
