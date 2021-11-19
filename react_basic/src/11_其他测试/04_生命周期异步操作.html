@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script type="text/javascript" src="../../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const { React,ReactDOM } = window;
+
+        class Demo extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {
+                    reactStargazersCount: '',
+                    reduxStargazersCount: '',
+                };
+            }
+
+            async componentWillMount() {
+                console.log('#enter componentWillMount');
+                const res = await fetch('https://api.github.com/repos/reactjs/redux')
+                console.log('#after get response in componentWillMount');
+                const json = await res.json()
+                console.log('#after get json in componentWillMount');
+                this.setState({reduxStargazersCount: json.stargazers_count});
+            }
+
+            async shouldComponentUpdate() {
+                console.log('#enter shouldComponentUpdate');
+                return false;
+            }
+
+            render() {
+                console.log('#enter render');
+                return (
+                  <div>
+                      <div>React stargazers count: {this.state.reactStargazersCount} </div>
+                      <div>Redux stargazers count: {this.state.reduxStargazersCount} </div>
+                  </div>
+                );
+            }
+
+            async componentDidMount() {
+                console.log('#enter componentDidMount');
+                const res = await fetch('https://api.github.com/repos/facebook/react')
+                console.log('#after get response in componentDidMount');
+                const json = await res.json()
+                console.log('#after get json in componentDidMount');
+                this.setState({reactStargazersCount: json.stargazers_count});
+            }
+        };
+
+        ReactDOM.render(<Demo/>,document.getElementById('root'));
+    </script>
+</body>
+</html>

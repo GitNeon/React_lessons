@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script type="text/javascript" src="../../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const { React,ReactDOM } = window;
+
+        const FocusInput = React.forwardRef((props, ref) => (
+          <input type="text" ref={ref} />
+        ));
+
+        class ForwardRef extends React.Component {
+            constructor(props) {
+                super(props);
+                this.ref = React.createRef();
+            }
+
+            componentDidMount() {
+                const { current } = this.ref;
+                current.focus();
+            }
+
+            render() {
+                return (
+                  <div>
+                      <p>forward ref</p>
+                      <FocusInput ref={this.ref} />
+                  </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<ForwardRef/>,document.getElementById('root'));
+    </script>
+</body>
+</html>

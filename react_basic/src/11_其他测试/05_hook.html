@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script type="text/javascript" src="../../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const { React,ReactDOM } = window;
+
+        const useList = (url) => {
+            const [list, setList] = React.useState(null);
+            React.useEffect(() => {
+                req(url).then(res => {
+                    setList(res.data)
+                }).catch(e => {
+                    console.error(e)
+                })
+            }, []);
+            return [
+                list,
+                setList
+            ]
+        };
+
+
+        function req() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => resolve({
+                    code: 200,
+                    data: [
+                        { id: 1, age: 20, name: '张三' },
+                        { id: 2, age: 21, name: '李四' },
+                        { id: 3, age: 22, name: '王五' },
+                        { id: 4, age: 23, name: '赵六' },
+                        { id: 5, age: 24, name: '周七' },
+                    ]
+                }), 2000)
+            })
+        }
+
+
+
+        const UseCustomHookDemo = () => {
+            const [ list,setList ] = useList('/list');
+
+            return (
+              <div>
+                  <h3>自定义list hooks demo</h3>
+                  {
+                      list ?
+                        (
+                          <ol>
+                              {
+                                  list.map(item => (
+                                    <li key={item.id}>姓名：{item.name}, 年龄：{item.age}</li>
+                                  ))
+                              }
+                          </ol>
+                        ) :
+                        ('loading...')
+                  }
+              </div>
+            )
+        };
+
+
+        ReactDOM.render(<UseCustomHookDemo/>,document.getElementById('root'));
+    </script>
+</body>
+</html>

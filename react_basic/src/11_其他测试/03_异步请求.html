@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script type="text/javascript" src="../../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/javascript">
+        function getSomething() {
+            var r = 0;
+            setTimeout(function() {
+                r = 2;
+                it.next(r);
+            }, 10);
+        }
+
+        function *compute(it) {
+            var x = yield getSomething();
+            alert(x * 2);
+        }
+        var it = compute();
+        it.next();
+    </script>
+</body>
+</html>
